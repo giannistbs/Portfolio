@@ -10,7 +10,7 @@ import '../assets/styles/Project.scss';
 function Project() {
     return(
     <div className="projects-container" id="projects">
-        <h1>Personal Projects</h1>
+        <h1>Personal Projects (Under Construction)</h1>
         <div className="projects-grid">
             <div className="project">
                 <div className="project-image"><img src={mock01} className="zoom" alt="thumbnail" width="100%"/></div>
