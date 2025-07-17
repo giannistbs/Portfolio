@@ -138,6 +138,11 @@
             display: block;
             padding-left: 0px;
             padding-right: 0px;
+            /* Fix mobile background visibility */
+            background-attachment: scroll;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
         }
 
         .about-section .content {
