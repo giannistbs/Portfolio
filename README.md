@@ -6,7 +6,7 @@
 
 This portfolio showcases the work and expertise of **Ioannis Tampakis**, a Software Engineer with experience in European R&D projects, full-stack application development, database management, and software architecture.
 
-Currently working at **Netcompany - Intrasoft** in Athens, and pursuing a Bachelor's degree in Management Science and Technology at Athens University of Economics and Business.
+Currently working at **Netcompany** in Athens, and pursuing a Bachelor's degree in Management Science and Technology at Athens University of Economics and Business.
 
 **Technologies & Skills:**
 - Java, Python, JavaScript, TypeScript
