@@ -8,7 +8,7 @@ function Contact() {
       <div className="items-container">
         <div className="contact_wrapper">
           <h1>Contact Me</h1>
-          <p>Interested in collaborating on innovative software projects? Let's connect and build something amazing together!</p>
+          {/* <p>Interested in collaborating on innovative software projects? Let's connect and build something amazing together!</p> */}
           <div className="contact-info">
             <p><strong>Email:</strong> giannistampakis04@gmail.com</p>
             <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/giannis-tampakis-b1b378256/" target="_blank" rel="noreferrer">linkedin.com/in/giannis-tampakis-b1b378256</a></p>
