@@ -1,8 +1,8 @@
 import React from "react";
 import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faDocker, faPython, faJava, faJs } from '@fortawesome/free-brands-svg-icons';
-import { faCode, faDatabase, faServer } from '@fortawesome/free-solid-svg-icons';
+import { faReact, faDocker, faPython } from '@fortawesome/free-brands-svg-icons';
+import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
@@ -48,7 +48,7 @@ function Expertise() {
             <h1>Expertise</h1>
             <div className="skills-grid">
                 <div className="skill">
-                    <FontAwesomeIcon icon={faCode} size="3x"/>
+                    <FontAwesomeIcon icon={faReact} size="3x"/>
                     <h3>Full Stack Development</h3>
                     <p>Experienced in building end-to-end applications using modern technologies. Proficient in both frontend and backend development with a focus on creating scalable and maintainable solutions.</p>
                     <div className="flex-chips">
@@ -72,7 +72,7 @@ function Expertise() {
                 </div>
 
                 <div className="skill">
-                    <FontAwesomeIcon icon={faServer} size="3x"/>
+                    <FontAwesomeIcon icon={faDocker} size="3x"/>
                     <h3>Software Architecture</h3>
                     <p>Skilled in designing and implementing software architecture solutions. Experience with containerization, cloud services, and building scalable distributed systems.</p>
                     <div className="flex-chips">
