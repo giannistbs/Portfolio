@@ -16,7 +16,6 @@ Currently working at **Netcompany - Intrasoft** in Athens, and pursuing a Bachel
 - REST APIs and system design
 - Docker and cloud technologies
 
-![screenshot](./src/assets//images/screenshot.png)
 
 ## Features
 
