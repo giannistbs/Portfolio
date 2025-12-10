@@ -7,38 +7,37 @@ import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
-    "Java",
-    "Python", 
-    "JavaScript",
+    "Java (Spring Boot, Quarkus)",
+    "Python",
     "TypeScript",
+    "JavaScript",
+    "Vue 3",
     "React",
-    "HTML5",
-    "CSS3",
-    "REST APIs",
-    "Spring Boot",
-    "Node.js"
+    "SQL",
+    "REST APIs"
 ];
 
 const labelsSecond = [
-    "SQL",
-    "PostgreSQL",
-    "MySQL",
-    "MongoDB",
-    "Database Design",
-    "Data Management",
-    "Performance Optimization"
+    "Kubernetes",
+    "Docker",
+    "Jenkins",
+    "GitHub Actions",
+    "Harbor",
+    "Hetzner Cloud",
+    "Minio (S3)",
+    "VPN Management",
+    "Keycloak"
 ];
 
 const labelsThird = [
-    "Docker",
-    "Git",
-    "GitHub",
-    "AWS",
-    "Linux",
-    "CI/CD",
-    "Software Architecture",
-    "System Design",
-    "Microservices"
+    "Apache Kafka",
+    "Apache Airflow",
+    "Celery",
+    "ELK Stack",
+    "Microservices",
+    "Event-Driven Architecture",
+    "MLOps",
+    "RAG"
 ];
 
 function Expertise() {
@@ -49,8 +48,8 @@ function Expertise() {
             <div className="skills-grid">
                 <div className="skill">
                     <FontAwesomeIcon icon={faReact} size="3x"/>
-                    <h3>Full Stack Development</h3>
-                    <p>Experienced in building end-to-end applications using modern technologies. Proficient in both frontend and backend development with a focus on creating scalable and maintainable solutions.</p>
+                    <h3>Full Stack & Architecture</h3>
+                    <p>Design and build end-to-end products with strong focus on clean APIs, microservices, and pragmatic frontend delivery.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsFirst.map((label, index) => (
@@ -61,8 +60,8 @@ function Expertise() {
 
                 <div className="skill">
                     <FontAwesomeIcon icon={faDatabase} size="3x"/>
-                    <h3>Database Management</h3>
-                    <p>Strong background in database design, optimization, and management. Experience with both relational and NoSQL databases for various application requirements.</p>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Own CI/CD and platform operations: containerized deployments, secure IAM, and cloud delivery pipelines for R&D products.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsSecond.map((label, index) => (
@@ -73,8 +72,8 @@ function Expertise() {
 
                 <div className="skill">
                     <FontAwesomeIcon icon={faDocker} size="3x"/>
-                    <h3>Software Architecture</h3>
-                    <p>Skilled in designing and implementing software architecture solutions. Experience with containerization, cloud services, and building scalable distributed systems.</p>
+                    <h3>Data, Messaging & AI Platforms</h3>
+                    <p>Build event-driven and MLOps pipelines with strong observability and reliable data movement for AI/analytics workloads.</p>
                     <div className="flex-chips">
                         <span className="chip-title">Tech stack:</span>
                         {labelsThird.map((label, index) => (

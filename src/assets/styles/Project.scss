@@ -11,23 +11,93 @@
     grid-gap: 50px;
 }
   
-.projects-container .projects-grid .project {
+.project-card {
     text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-  
-.project h2:hover {
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(80, 0, 202, 0.4);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+
+.project-header h2 {
+    margin: 0 0 4px 0;
+    color: #f5f7fb;
+}
+
+.light-mode .project-header h2 {
+    color: #0d1116;
+}
+
+.project-header h2:hover {
     text-decoration: underline;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
-  
-.zoom {
-    border-radius: 5px;
-    transition: transform .2s;
-    margin: 0 auto;
+
+.project-context {
+    margin: 0 0 12px 0;
+    color: rgba(255, 255, 255, 0.82);
 }
-  
-.zoom:hover {
-    transform: scale(1.05);
+
+.light-mode .project-context {
+    color: rgba(13, 17, 22, 0.7);
+}
+
+.project-description {
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+    color: rgba(245, 247, 251, 0.92);
+}
+
+.light-mode .project-description {
+    color: #0d1116;
+}
+
+.project-highlights {
+    margin: 0 0 12px 18px;
+    padding: 0;
+}
+
+.project-highlights li {
+    margin-bottom: 6px;
+    color: rgba(245, 247, 251, 0.9);
+}
+
+.light-mode .project-highlights li {
+    color: #0d1116;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-chip {
+    background: linear-gradient(135deg, #7c3aed, #5000ca) !important;
+    color: #f7f9fc !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.light-mode .project-card {
+    background: rgba(13, 17, 22, 0.02);
+    border: 1px solid rgba(13, 17, 22, 0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .project-chip {
+    background: linear-gradient(135deg, #e9ddff, #d2c4ff) !important;
+    color: #1a1d24 !important;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
 @media screen {
@@ -42,8 +112,9 @@
             display: block;
         }
       
-        .projects-container .projects-grid .project {
+        .projects-container .projects-grid .project-card {
             padding-bottom: 5%;
+            margin-bottom: 5%;
         }
     }
 }

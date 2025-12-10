@@ -16,19 +16,24 @@ function Timeline() {
             className="vertical-timeline-element--work"
             contentStyle={{ background: 'white', color: 'rgb(39, 40, 34)' }}
             contentArrowStyle={{ borderRight: '7px solid  white' }}
-            date="2024 - present"
+            date="Mar 2024 – Present"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Software Engineer</h3>
+            <h3 className="vertical-timeline-element-title">Software Engineer / Technical Lead</h3>
             <h4 className="vertical-timeline-element-subtitle">Netcompany - Intrasoft, Athens</h4>
             <p>
-              European R&D projects, Full-stack application development, Database management, Software architecture
+              Leading architecture and delivery across European R&D platforms with a focus on reliable, scalable services.
             </p>
+            <ul>
+              <li>Technical lead for iDriving EU and UniMaaS: system specs, CI/CD (Jenkins + Harbor), Kubernetes, and secure IAM with Keycloak.</li>
+              <li>Built backend services: on-prem GenAI assistant (Quarkus, RAG integrations) and EOSC Notification Service.</li>
+              <li>Developed reusable Workflow Management Engine (Spring Boot, Vue 3, Kafka, Airflow, Celery, ELK) for MLOps pipelines.</li>
+            </ul>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--education"
-            date="2022 - present"
+            date="Sep 2022 – Present"
             iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
             icon={<FontAwesomeIcon icon={faGraduationCap} />}
           >
