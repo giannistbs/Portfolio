@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import '../assets/styles/Main.scss';
@@ -8,6 +8,27 @@ function Main() {
 
   const [githubMenuOpenDesktop, setGithubMenuOpenDesktop] = useState<boolean>(false);
   const [githubMenuOpenMobile, setGithubMenuOpenMobile] = useState<boolean>(false);
+  const desktopPopoverRef = useRef<HTMLDivElement | null>(null);
+  const mobilePopoverRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (githubMenuOpenDesktop && desktopPopoverRef.current && target && !desktopPopoverRef.current.contains(target)) {
+        setGithubMenuOpenDesktop(false);
+      }
+      if (githubMenuOpenMobile && mobilePopoverRef.current && target && !mobilePopoverRef.current.contains(target)) {
+        setGithubMenuOpenMobile(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [githubMenuOpenDesktop, githubMenuOpenMobile]);
 
   return (
     <div className="container">
@@ -18,6 +39,7 @@ function Main() {
         <div className="content">
           <div className="social_icons">
             <div
+              ref={desktopPopoverRef}
               className={`social-popover ${githubMenuOpenDesktop ? 'open' : ''}`}
               onClick={() => {
                 setGithubMenuOpenDesktop((v) => !v);
@@ -39,6 +61,7 @@ function Main() {
 
           <div className="mobile_social_icons">
             <div
+              ref={mobilePopoverRef}
               className={`social-popover ${githubMenuOpenMobile ? 'open' : ''}`}
               onClick={() => {
                 setGithubMenuOpenMobile((v) => !v);
