@@ -8,6 +8,7 @@ import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
     "Java (Spring Boot, Quarkus)",
+    "Go",
     "Python",
     "TypeScript",
     "JavaScript",
