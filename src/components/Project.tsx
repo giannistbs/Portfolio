@@ -12,6 +12,17 @@ type ProjectCard = {
 
 const projects: ProjectCard[] = [
     {
+        title: "Workflow Management Engine (SOPRANO / MODUL4R / GreenDatAI)",
+        context: "Full Stack | 2022 – present",
+        description:
+            "Reusable workflow engine enabling MLOps pipelines across multiple EU R&D projects.",
+        highlights: [
+            "Built Spring Boot + Vue 3 solution with Airflow DAGs for workflow generation.",
+            "Implemented event-driven pipelines with Kafka/Celery and observability via ELK."
+        ],
+        techStack: ["Spring Boot","Go", "Vue 3", "Apache Kafka", "Apache Airflow", "Python", "Celery", "ELK", "Keycloak", "Docker"]
+    },
+    {
         title: "iDriving EU – Technical Lead",
         context: "Netcompany - Intrasoft | 2024 – present",
         description:
@@ -54,17 +65,6 @@ const projects: ProjectCard[] = [
             "Managed cloud infrastructure and VPN for cross-partner access."
         ],
         techStack: ["Kubernetes", "Keycloak", "Jenkins", "Cloud", "VPN Management"]
-    },
-    {
-        title: "Workflow Management Engine (SOPRANO / MODUL4R / GreenDatAI)",
-        context: "Full Stack | 2022 – present",
-        description:
-            "Reusable workflow engine enabling MLOps pipelines across multiple EU R&D projects.",
-        highlights: [
-            "Built Spring Boot + Vue 3 solution with Airflow DAGs for workflow generation.",
-            "Implemented event-driven pipelines with Kafka/Celery and observability via ELK."
-        ],
-        techStack: ["Spring Boot", "Vue 3", "Apache Kafka", "Apache Airflow", "Python", "Celery", "ELK", "Keycloak", "Docker"]
     }
 ];
 
