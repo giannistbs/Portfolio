@@ -108,7 +108,7 @@ export const XP: Record<XpTab, { badges?: string[]; items: XpItem[] }> = {
       },
       {
         date: "Mar 2024 – Nov 2026",
-        title: "R&D DevOps Engineer",
+        title: "Research Platform Engineer",
         org: "Netcompany",
         description:
           "Technical manager for DevOps and architecture on EU Horizon projects: iDriving (road safety), UniMaaS (manufacturing as a service) and PETSforDeFi (privacy-enhancing tech for DeFi).\nBuilt their infrastructure from scratch and ran deployments for AI components, digital twins, knowledge graphs and control centres, with CI/CD, GitOps and monitoring.\nLed the design of a reusable workflow engine now used across 4+ research projects, and built production Java backends, including a notification service for a European research cloud used by thousands of researchers.",
@@ -144,9 +144,9 @@ export const XP: Record<XpTab, { badges?: string[]; items: XpItem[] }> = {
       {
         date: "Private audits",
         title: "Silo Finance, Euler Vault Kit periphery, IZkonen",
-        org: "Zark · KannAudits",
+        org: "private audits",
         description:
-          "Private audits of Silo Finance and the Euler Vault Kit periphery with Zark, and a security review of the IZkonen protocol with KannAudits.",
+          "Private audits of Silo Finance and the Euler Vault Kit periphery, and a security review of the IZkonen protocol with KannAudits.",
       },
     ],
   },

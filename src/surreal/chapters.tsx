@@ -120,7 +120,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "security",
     mark: "2",
-    label: "breaking things",
+    label: "web3 security",
     wall: "#d34724",
     floor: "#c0a4bd",
     horizon: 74,
@@ -129,9 +129,9 @@ export const CHAPTERS: Chapter[] = [
     render: () => (
       <div className="flex h-full flex-col">
         <Title n="2" light>
-          breaking things
+          And some web3
           <br />
-          on purpose
+          Security Exp
         </Title>
         <div className="mt-5 flex flex-wrap gap-2">
           {["#3 sherlock finish", "2 high", "4 medium", "8 months freelance"].map((b, i) => (
