@@ -31,7 +31,7 @@ export function Sidebar() {
             )}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/ioannis.jpg" alt="" className="size-full object-cover grayscale-[30%]" />
+            <img src="/images/ioannis.jpg" alt="" className="size-full object-cover" />
           </Link>
         </motion.div>
 
