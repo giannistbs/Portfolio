@@ -39,7 +39,7 @@ export function ScrollArea({ className, children }: { className: string; childre
 
   return (
     <div className={`relative pr-8 ${outer}`}>
-      <div ref={ref} className={`w-full ${inner}`} style={{ maskImage: fade, WebkitMaskImage: fade }}>
+      <div ref={ref} className={`w-full overscroll-y-contain ${inner}`} style={{ maskImage: fade, WebkitMaskImage: fade }}>
         {children}
       </div>
       <button

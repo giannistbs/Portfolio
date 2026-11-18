@@ -56,7 +56,7 @@ function Tags({ items }: { items: string[] }) {
 }
 
 
-const INTRO = ["devops engineer at certora.", "ex-netcompany: cloud for eu research.", "breaks defi protocols for fun."];
+const INTRO = ["devops engineer at certora.", "ex-netcompany: cloud for eu research.", "has broken defi protocols for fun."];
 
 function IntroLines({ className }: { className: string }) {
   return (
@@ -81,7 +81,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "home",
     mark: "0",
-    label: "ioannis tampakis",
+    label: "myself",
     wall: "#1a4ba7",
     floor: "#d0ad82",
     horizon: 79,
@@ -90,9 +90,11 @@ export const CHAPTERS: Chapter[] = [
     ink: "light",
     render: () => (
       <div className="flex h-full flex-col">
-        <h1 className="pop mt-[11vh] flex flex-wrap items-baseline gap-x-3 leading-[0.8] text-paper" style={d(150)}>
-          <span className="text-[clamp(3.2rem,11vw,10.5rem)] font-black tracking-[-0.06em]">IOANNIS</span>
-          <span className="inline-block size-[clamp(0.8rem,2vw,1.6rem)] rounded-full bg-dot" />
+        <h1 className="pop mt-[11vh] flex flex-col items-start gap-y-1 leading-[0.8] text-paper sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-3" style={d(150)}>
+          <span className="flex items-baseline gap-x-3">
+            <span className="text-[clamp(3.2rem,11vw,10.5rem)] font-black tracking-[-0.06em]">IOANNIS</span>
+            <span className="inline-block size-[clamp(0.8rem,2vw,1.6rem)] rounded-full bg-dot" />
+          </span>
           <span className="font-serif text-[clamp(2.4rem,7.5vw,7rem)] italic tracking-tight">tampakis</span>
         </h1>
         {/* phones: under the name, cream on the blue wall */}
@@ -255,14 +257,16 @@ export const CHAPTERS: Chapter[] = [
     label: "say hi",
     wall: "#1a4ba7",
     floor: "#d0ad82",
-    horizon: 70,
+    horizon: 62,
     ink: "light",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="pop mt-[10vh] text-[clamp(3.6rem,14vw,12rem)] font-black leading-[0.8] tracking-[-0.06em] text-paper" style={d(150)}>
           say hi<span className="text-dot">.</span>
         </h2>
-        <div className="mt-auto mb-24 space-y-2 font-mono text-sm tracking-[0.08em] sm:text-base">
+        {/* phones: right under the heading, cream on the blue wall, label above each link.
+            larger screens: on the floor, label and link side by side, as before */}
+        <div className="mt-10 space-y-5 font-mono text-[13px] tracking-[0.06em] text-paper sm:mb-24 sm:mt-auto sm:space-y-2 sm:text-base sm:tracking-[0.08em] sm:text-ink">
           {[
             ["email", `mailto:${SITE.socials.mail}`, SITE.socials.mail],
             ["github", SITE.socials.github, "github.com/giannistbs"],
@@ -271,10 +275,12 @@ export const CHAPTERS: Chapter[] = [
           ].map(([k, href, text], i) => (
             <p key={k} className="pop flex gap-3" style={d(500 + i * 120)}>
               <span className="text-dot">&gt;</span>
-              <span className="w-20 text-ink/70">{k}</span>
-              <a href={href} target={k === "email" ? undefined : "_blank"} rel="noopener noreferrer" className="font-bold underline-offset-4 hover:underline">
-                {text}
-              </a>
+              <span className="flex min-w-0 flex-col gap-1 sm:flex-row sm:gap-3">
+                <span className="text-[11px] uppercase tracking-[0.2em] text-paper/60 sm:w-20 sm:text-base sm:normal-case sm:tracking-[0.08em] sm:text-ink/70">{k}</span>
+                <a href={href} target={k === "email" ? undefined : "_blank"} rel="noopener noreferrer" className="break-all font-bold underline-offset-4 hover:underline sm:break-normal">
+                  {text}
+                </a>
+              </span>
             </p>
           ))}
         </div>

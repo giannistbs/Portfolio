@@ -37,8 +37,9 @@ function scrollableParent(target: EventTarget | null): HTMLElement | null {
 /** True when `el` can still scroll further in the direction of `dy` (positive = down). */
 function canScrollFurther(el: HTMLElement | null, dy: number) {
   if (!el) return false;
-  if (dy > 0) return el.scrollTop + el.clientHeight < el.scrollHeight - 2;
-  return el.scrollTop > 0;
+  // a few px of slack: phones report fractional / rubber-band scroll positions at the ends
+  if (dy > 0) return el.scrollTop + el.clientHeight < el.scrollHeight - 6;
+  return el.scrollTop > 6;
 }
 
 export function Surreal() {
@@ -159,19 +160,19 @@ export function Surreal() {
       }
     };
 
-    let touch: { y: number; t: number; el: HTMLElement | null; startTop: number } | null = null;
+    // swipes: a swipe that starts with the card list already at its end changes page;
+    // one that starts mid-list only scrolls the list (iOS bounces at the ends, so don't look at movement)
+    let touch: { y: number; t: number; el: HTMLElement | null; atTop: boolean; atBottom: boolean } | null = null;
     const onTouchStart = (e: TouchEvent) => {
       const el = scrollableParent(e.target);
-      touch = { y: e.touches[0].clientY, t: Date.now(), el, startTop: el?.scrollTop ?? 0 };
+      touch = { y: e.touches[0].clientY, t: Date.now(), el, atTop: !canScrollFurther(el, -1), atBottom: !canScrollFurther(el, 1) };
     };
     const onTouchEnd = (e: TouchEvent) => {
       if (!touch || !ready()) return;
       const dy = touch.y - e.changedTouches[0].clientY; // positive = swipe up = next page
-      const quick = Date.now() - touch.t < 700;
-      // if the swipe was used to scroll a card list, don't change page
-      const scrolled = touch.el && Math.abs(touch.el.scrollTop - touch.startTop) > 2;
-      const atEdge = !touch.el || !canScrollFurther(touch.el, dy);
-      if (quick && Math.abs(dy) > 60 && !scrolled && atEdge) step(dy > 0 ? 1 : -1);
+      const quick = Date.now() - touch.t < 800;
+      const startedAtEdge = dy > 0 ? touch.atBottom : touch.atTop;
+      if (quick && Math.abs(dy) > 50 && startedAtEdge) step(dy > 0 ? 1 : -1);
       touch = null;
     };
 
