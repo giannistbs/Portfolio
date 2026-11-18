@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inconsolata } from "next/font/google";
 import { Shell } from "@/components/layout/shell";
+import { inconsolata } from "@/fonts";
 import { SITE } from "@/data/site";
 import { Providers } from "./providers";
 import "./tech.css";
-
-const font = Inconsolata({ subsets: ["latin"], weight: ["400", "700"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -19,7 +17,7 @@ export const viewport: Viewport = { themeColor: "#0c0a09" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${font.className} antialiased`}>
+      <body className={`${inconsolata.className} antialiased`}>
         <Providers>
           <Shell>{children}</Shell>
         </Providers>
