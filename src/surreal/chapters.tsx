@@ -8,6 +8,7 @@ export type Chapter = {
   wall: string;
   floor: string;
   horizon: number; // % from the top where the wall meets the floor
+  horizonPhone?: number; // same, on phones (defaults to horizon)
   image?: string;
   imageMobile?: string; // taller version used on phones so the top isn't hidden by the header
   ink: "light" | "dark";
@@ -56,19 +57,27 @@ function Tags({ items }: { items: string[] }) {
 }
 
 
-const INTRO = ["devops engineer at certora.", "ex-netcompany: cloud for eu research.", "has broken defi protocols for fun."];
+const INTRO = ["devops engineer @ certora.", "prev netcompany: cloud for eu research.", "has broken defi protocols for fun."];
 
-function IntroLines({ className }: { className: string }) {
+function IntroLines({ className, wrap = false }: { className: string; wrap?: boolean }) {
+  // wrap: narrow column (phones) where lines may break; each line pops in instead of being typed
   return (
     <div className={`space-y-2 font-mono text-[12px] tracking-[0.1em] sm:text-[15px] sm:tracking-[0.12em] ${className}`}>
-      {INTRO.map((line, i) => (
-        <p key={line} className="flex gap-3">
-          <span className="text-dot">&gt;</span>
-          <span className="type-in inline-block" style={{ ...d(700 + i * 650), "--n": line.length, "--t": "620ms" } as React.CSSProperties}>
-            {line}
-          </span>
-        </p>
-      ))}
+      {INTRO.map((line, i) =>
+        wrap ? (
+          <p key={line} className="pop flex gap-2.5 leading-snug" style={d(700 + i * 260)}>
+            <span className="text-dot-soft">&gt;</span>
+            <span>{line}</span>
+          </p>
+        ) : (
+          <p key={line} className="flex gap-3">
+            <span className="text-dot">&gt;</span>
+            <span className="type-in inline-block" style={{ ...d(700 + i * 650), "--n": line.length, "--t": "620ms" } as React.CSSProperties}>
+              {line}
+            </span>
+          </p>
+        ),
+      )}
     </div>
   );
 }
@@ -97,8 +106,8 @@ export const CHAPTERS: Chapter[] = [
           </span>
           <span className="font-serif text-[clamp(2.4rem,7.5vw,7rem)] italic tracking-tight">tampakis</span>
         </h1>
-        {/* phones: under the name, cream on the blue wall */}
-        <IntroLines className="mt-6 text-paper sm:hidden" />
+        {/* phones: lower down at leg height, in a narrow column left of the figure, cream on the blue wall */}
+        <IntroLines wrap className="mb-[25vh] mt-auto max-w-[47%] text-paper sm:hidden" />
         {/* larger screens: on the floor, as before */}
         <IntroLines className="mb-[4vh] mt-auto hidden text-ink sm:block" />
       </div>
@@ -258,6 +267,7 @@ export const CHAPTERS: Chapter[] = [
     wall: "#1a4ba7",
     floor: "#d0ad82",
     horizon: 62,
+    horizonPhone: 86,
     ink: "light",
     render: () => (
       <div className="flex h-full flex-col">
@@ -266,7 +276,7 @@ export const CHAPTERS: Chapter[] = [
         </h2>
         {/* phones: right under the heading, cream on the blue wall, label above each link.
             larger screens: on the floor, label and link side by side, as before */}
-        <div className="mt-10 space-y-5 font-mono text-[13px] tracking-[0.06em] text-paper sm:mb-24 sm:mt-auto sm:space-y-2 sm:text-base sm:tracking-[0.08em] sm:text-ink">
+        <div className="mt-10 space-y-5 pr-6 font-mono text-[12px] tracking-[0.04em] text-paper sm:pr-0 sm:mb-24 sm:mt-auto sm:space-y-2 sm:text-base sm:tracking-[0.08em] sm:text-ink">
           {[
             ["email", `mailto:${SITE.socials.mail}`, SITE.socials.mail],
             ["github", SITE.socials.github, "github.com/giannistbs"],
@@ -274,11 +284,21 @@ export const CHAPTERS: Chapter[] = [
             ["audits", SITE.socials.audits, "github.com/giannistbs/audit-portfolio"],
           ].map(([k, href, text], i) => (
             <p key={k} className="pop flex gap-3" style={d(500 + i * 120)}>
-              <span className="text-dot">&gt;</span>
+              <span className="text-dot-soft sm:text-dot">&gt;</span>
               <span className="flex min-w-0 flex-col gap-1 sm:flex-row sm:gap-3">
                 <span className="text-[11px] uppercase tracking-[0.2em] text-paper/60 sm:w-20 sm:text-base sm:normal-case sm:tracking-[0.08em] sm:text-ink/70">{k}</span>
-                <a href={href} target={k === "email" ? undefined : "_blank"} rel="noopener noreferrer" className="break-all font-bold underline-offset-4 hover:underline sm:break-normal">
-                  {text}
+                <a href={href} target={k === "email" ? undefined : "_blank"} rel="noopener noreferrer" className="font-bold underline-offset-4 hover:underline">
+                  {/* let long links wrap only after a "/" */}
+                  {text.split("/").map((part, j, all) => (
+                    <span key={j}>
+                      {part}
+                      {j < all.length - 1 && (
+                        <>
+                          /<wbr />
+                        </>
+                      )}
+                    </span>
+                  ))}
                 </a>
               </span>
             </p>

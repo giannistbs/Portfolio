@@ -251,8 +251,12 @@ function Boot() {
 
 function ChapterView({ ch }: { ch: Chapter }) {
   return (
-    <section className="absolute inset-0" style={{ background: ch.floor }} aria-label={ch.label}>
-      <div className="absolute inset-x-0 top-0" style={{ height: `${ch.horizon}%`, background: ch.wall }} />
+    <section
+      className="absolute inset-0 [--hz:var(--hz-phone)] sm:[--hz:var(--hz-wide)]"
+      style={{ background: ch.floor, "--hz-wide": `${ch.horizon}%`, "--hz-phone": `${ch.horizonPhone ?? ch.horizon}%` } as React.CSSProperties}
+      aria-label={ch.label}
+    >
+      <div className="absolute inset-x-0 top-0" style={{ height: "var(--hz)", background: ch.wall }} />
       {ch.image ? (
         <picture>
           {ch.imageMobile && <source media="(max-width: 639px)" srcSet={ch.imageMobile} />}
@@ -278,15 +282,15 @@ function BigMark({ ch }: { ch: Chapter }) {
     <div aria-hidden className="pointer-events-none absolute inset-0">
       <span
         className="pop absolute right-[6vw] font-serif italic leading-none text-paper/80"
-        style={{ bottom: `${100 - ch.horizon - 6}%`, fontSize: "min(52vh, 40vw)", "--d": "120ms" } as React.CSSProperties}
+        style={{ bottom: "calc(94% - var(--hz))", fontSize: "min(52vh, 40vw)", "--d": "120ms" } as React.CSSProperties}
       >
         {ch.mark}
       </span>
       <span
         className="pop absolute right-[30vw] hidden size-[7vmin] rounded-full bg-dot sm:block"
-        style={{ bottom: `${100 - ch.horizon + 2}%`, "--d": "420ms" } as React.CSSProperties}
+        style={{ bottom: "calc(102% - var(--hz))", "--d": "420ms" } as React.CSSProperties}
       />
-      <div className="absolute inset-x-0" style={{ top: `${ch.horizon}%`, height: "6%", background: "linear-gradient(rgba(0,0,0,.10), transparent)" }} />
+      <div className="absolute inset-x-0" style={{ top: "var(--hz)", height: "6%", background: "linear-gradient(rgba(0,0,0,.10), transparent)" }} />
     </div>
   );
 }

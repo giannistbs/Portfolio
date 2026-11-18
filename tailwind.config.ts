@@ -17,6 +17,7 @@ const config: Config = {
         paper: "#f3ece0",
         ink: "#1b1b1b",
         dot: "#ff4a1c",
+        "dot-soft": "#ffa285", // lighter coral for the accent on the blue wall (more legible than dot)
         pill: "#ffb3cf",
         mustard: "#c9a033",
         // /tech site (theme tokens)
