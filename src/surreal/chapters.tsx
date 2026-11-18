@@ -9,6 +9,7 @@ export type Chapter = {
   floor: string;
   horizon: number; // % from the top where the wall meets the floor
   image?: string;
+  imageMobile?: string; // taller version used on phones so the top isn't hidden by the header
   ink: "light" | "dark";
   render: () => React.ReactNode;
 };
@@ -54,6 +55,24 @@ function Tags({ items }: { items: string[] }) {
   );
 }
 
+
+const INTRO = ["devops engineer at certora.", "ex-netcompany: cloud for eu research.", "breaks defi protocols for fun."];
+
+function IntroLines({ className }: { className: string }) {
+  return (
+    <div className={`space-y-2 font-mono text-[12px] tracking-[0.1em] sm:text-[15px] sm:tracking-[0.12em] ${className}`}>
+      {INTRO.map((line, i) => (
+        <p key={line} className="flex gap-3">
+          <span className="text-dot">&gt;</span>
+          <span className="type-in inline-block" style={{ ...d(700 + i * 650), "--n": line.length, "--t": "620ms" } as React.CSSProperties}>
+            {line}
+          </span>
+        </p>
+      ))}
+    </div>
+  );
+}
+
 const work = XP.work.items;
 const sec = XP.security.items;
 const edu = XP.education.items;
@@ -67,28 +86,19 @@ export const CHAPTERS: Chapter[] = [
     floor: "#d0ad82",
     horizon: 79,
     image: "/art/hero.jpg",
+    imageMobile: "/art/hero-tall.jpg",
     ink: "light",
     render: () => (
-      <div className="flex h-full flex-col justify-between">
+      <div className="flex h-full flex-col">
         <h1 className="pop mt-[11vh] flex flex-wrap items-baseline gap-x-3 leading-[0.8] text-paper" style={d(150)}>
           <span className="text-[clamp(3.2rem,11vw,10.5rem)] font-black tracking-[-0.06em]">IOANNIS</span>
           <span className="inline-block size-[clamp(0.8rem,2vw,1.6rem)] rounded-full bg-dot" />
           <span className="font-serif text-[clamp(2.4rem,7.5vw,7rem)] italic tracking-tight">tampakis</span>
         </h1>
-        <div className="mb-[9vh] w-fit space-y-2 rounded-lg bg-paper/90 px-3 py-2.5 font-mono text-[12px] tracking-[0.08em] text-ink shadow-md sm:mb-[4vh] sm:bg-transparent sm:p-0 sm:text-[15px] sm:tracking-[0.12em] sm:shadow-none">
-          {[
-            "devops engineer at certora.",
-            "ex-netcompany: cloud for eu research.",
-            "breaks defi protocols for fun.",
-          ].map((line, i) => (
-            <p key={line} className="flex gap-3">
-              <span className="text-dot">&gt;</span>
-              <span className="type-in inline-block" style={{ ...d(700 + i * 650), "--n": line.length, "--t": "620ms" } as React.CSSProperties}>
-                {line}
-              </span>
-            </p>
-          ))}
-        </div>
+        {/* phones: under the name, cream on the blue wall */}
+        <IntroLines className="mt-6 text-paper sm:hidden" />
+        {/* larger screens: on the floor, as before */}
+        <IntroLines className="mb-[4vh] mt-auto hidden text-ink sm:block" />
       </div>
     ),
   },

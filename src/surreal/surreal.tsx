@@ -8,6 +8,8 @@ const INDEX_MS = 560; // opening / closing the index
 const PAGE_MS = 440; // page to page: quicker
 const INDEX_COLOR = "#c9a033";
 const WHEEL_COOLDOWN_MS = 700;
+// a scroll movement that ran a card list to its end is "spent" until the wheel goes quiet for this long
+const GESTURE_GAP_MS = 320;
 
 /** Shapes used for page-to-page transitions; one is picked at random each time (never the same twice in a row). */
 const VARIANTS = ["circle", "wipe", "diamond", "slant"] as const;
@@ -47,6 +49,7 @@ export function Surreal() {
   const busy = useRef(false);
   const lockedUntil = useRef(0);
   const wheelAcc = useRef(0);
+  const listScrolledAt = useRef(0);
   const lastVariant = useRef<Variant>("circle");
 
   /** Grow a shape of `color` (from x, y where relevant); when it fills the screen, swap the view underneath and fade it out. */
@@ -133,8 +136,17 @@ export function Surreal() {
 
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      const now = Date.now();
       // a card list that can still scroll gets the wheel first
       if (canScrollFurther(scrollableParent(e.target), e.deltaY)) {
+        listScrolledAt.current = now;
+        wheelAcc.current = 0;
+        return;
+      }
+      // the list just reached its end in this same scroll movement (incl. trackpad momentum): stop here.
+      // Only a new, separate scroll at the end moves to the next / previous page.
+      if (now - listScrolledAt.current < GESTURE_GAP_MS) {
+        listScrolledAt.current = now;
         wheelAcc.current = 0;
         return;
       }
@@ -241,13 +253,16 @@ function ChapterView({ ch }: { ch: Chapter }) {
     <section className="absolute inset-0" style={{ background: ch.floor }} aria-label={ch.label}>
       <div className="absolute inset-x-0 top-0" style={{ height: `${ch.horizon}%`, background: ch.wall }} />
       {ch.image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={ch.image}
-          alt=""
-          className="slide-in absolute inset-x-0 bottom-0 top-[84px] h-[calc(100%-84px)] w-full object-cover object-[72%_center] sm:top-0 sm:h-full sm:object-right [mask-image:linear-gradient(to_bottom,transparent,black_56px)] sm:[mask-image:none]"
-          style={{ "--d": "60ms" } as React.CSSProperties}
-        />
+        <picture>
+          {ch.imageMobile && <source media="(max-width: 639px)" srcSet={ch.imageMobile} />}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={ch.image}
+            alt=""
+            className="slide-in absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-right"
+            style={{ "--d": "60ms" } as React.CSSProperties}
+          />
+        </picture>
       ) : (
         <BigMark ch={ch} />
       )}
