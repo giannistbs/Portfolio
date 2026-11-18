@@ -1,0 +1,274 @@
+import { PROJECTS, SITE, XP } from "@/data/site";
+import { ScrollArea } from "./scroll-area";
+
+export type Chapter = {
+  id: string;
+  mark: string; // big italic glyph on the index card
+  label: string; // short name shown in the header and index
+  wall: string;
+  floor: string;
+  horizon: number; // % from the top where the wall meets the floor
+  image?: string;
+  ink: "light" | "dark";
+  render: () => React.ReactNode;
+};
+
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
+
+function Title({ n, children, light }: { n: string; children: React.ReactNode; light?: boolean }) {
+  return (
+    <div className="max-w-[46rem]">
+      <p className={`pop font-mono text-sm font-bold ${light ? "text-paper/80" : "text-dot"}`} style={d(120)}>
+        ### {n}
+      </p>
+      <h2
+        className={`pop mt-2 text-[clamp(2.6rem,7vw,5.6rem)] font-extrabold leading-[0.92] tracking-[-0.045em] ${light ? "text-paper" : "text-ink"}`}
+        style={d(200)}
+      >
+        {children}
+      </h2>
+    </div>
+  );
+}
+
+function Paper({ children, tilt = 0, delay = 0, className = "" }: { children: React.ReactNode; tilt?: number; delay?: number; className?: string }) {
+  return (
+    <div
+      className={`pop card-paper p-4 sm:p-5 ${className}`}
+      style={{ ...d(delay), "--tilt": `${tilt}deg`, "--tilt-from": `${tilt * 3}deg` } as React.CSSProperties}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Tags({ items }: { items: string[] }) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {items.map((t) => (
+        <span key={t} className="rounded-full border border-ink/25 px-2 py-0.5 font-mono text-[11px]">
+          {t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+const work = XP.work.items;
+const sec = XP.security.items;
+const edu = XP.education.items;
+
+export const CHAPTERS: Chapter[] = [
+  {
+    id: "home",
+    mark: "0",
+    label: "ioannis tampakis",
+    wall: "#1a4ba7",
+    floor: "#d0ad82",
+    horizon: 79,
+    image: "/art/hero.jpg",
+    ink: "light",
+    render: () => (
+      <div className="flex h-full flex-col justify-between">
+        <h1 className="pop mt-[11vh] flex flex-wrap items-baseline gap-x-3 leading-[0.8] text-paper" style={d(150)}>
+          <span className="text-[clamp(3.2rem,11vw,10.5rem)] font-black tracking-[-0.06em]">IOANNIS</span>
+          <span className="inline-block size-[clamp(0.8rem,2vw,1.6rem)] rounded-full bg-dot" />
+          <span className="font-serif text-[clamp(2.4rem,7.5vw,7rem)] italic tracking-tight">tampakis</span>
+        </h1>
+        <div className="mb-[4vh] space-y-2 font-mono text-[13px] tracking-[0.12em] text-ink sm:text-[15px]">
+          {[
+            "devops engineer at certora.",
+            "ex-netcompany: cloud for eu research.",
+            "breaks defi protocols for fun.",
+          ].map((line, i) => (
+            <p key={line} className="flex gap-3">
+              <span className="text-dot">&gt;</span>
+              <span className="type-in inline-block" style={{ ...d(700 + i * 650), "--n": line.length, "--t": "620ms" } as React.CSSProperties}>
+                {line}
+              </span>
+            </p>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "work",
+    mark: "1",
+    label: "experience",
+    wall: "#d8a532",
+    floor: "#f2a7c3",
+    horizon: 64,
+    ink: "dark",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <Title n="1">experience</Title>
+        <ScrollArea className="scroll-thin items-start mt-6 grid max-h-[58vh] gap-4 overflow-y-auto pb-24 pr-1 sm:mt-auto sm:max-w-3xl sm:grid-cols-2">
+          {work.slice(0, 2).map((w, i) => (
+            <Paper key={w.org} tilt={i ? 1.2 : -1.4} delay={400 + i * 160}>
+              <p className="font-serif text-2xl italic text-dot">{w.date}</p>
+              <h3 className="mt-1 text-lg font-extrabold tracking-tight">{w.title}</h3>
+              <p className="font-mono text-xs">@{w.org}</p>
+              <p className="mt-2 whitespace-pre-line text-sm leading-snug">{w.description}</p>
+              {w.skills && <Tags items={w.skills} />}
+            </Paper>
+          ))}
+        </ScrollArea>
+      </div>
+    ),
+  },
+  {
+    id: "security",
+    mark: "2",
+    label: "breaking things",
+    wall: "#d34724",
+    floor: "#c0a4bd",
+    horizon: 74,
+    image: "/art/security.jpg",
+    ink: "light",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <Title n="2" light>
+          breaking things
+          <br />
+          on purpose
+        </Title>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {["#3 sherlock finish", "2 high", "4 medium", "8 months freelance"].map((b, i) => (
+            <span key={b} className="pop rounded-full bg-paper px-3 py-1 font-mono text-xs font-bold" style={d(380 + i * 90)}>
+              {b}
+            </span>
+          ))}
+        </div>
+        <ScrollArea className="scroll-thin items-start mt-auto grid max-h-[46vh] gap-3 overflow-y-auto pb-24 pr-1 sm:max-w-xl">
+          {sec.map((s, i) => (
+            <Paper key={s.title} tilt={[-1, 0.8, -0.5][i]} delay={600 + i * 140}>
+              <p className="font-mono text-[11px] uppercase tracking-widest text-dot">{s.org}</p>
+              <h3 className="font-extrabold tracking-tight">{s.title}</h3>
+              <p className="mt-1 text-sm leading-snug">{s.description}</p>
+            </Paper>
+          ))}
+          <a href={SITE.socials.audits} target="_blank" rel="noopener noreferrer" className="pop font-mono text-sm font-bold text-paper underline underline-offset-4" style={d(1100)}>
+            &gt; read the audit portfolio ↗
+          </a>
+        </ScrollArea>
+      </div>
+    ),
+  },
+  {
+    id: "web3",
+    mark: "3",
+    label: "chains & cubes",
+    wall: "#70a1c7",
+    floor: "#f28197",
+    horizon: 80,
+    image: "/art/web3.jpg",
+    ink: "dark",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <Title n="3">
+          chains
+          <br />& cubes
+        </Title>
+        <ScrollArea className="scroll-thin items-start mt-auto grid max-h-[52vh] gap-3 overflow-y-auto pb-24 pr-1 sm:max-w-2xl sm:grid-cols-2">
+          {PROJECTS.web3.map((p, i) => (
+            <Paper key={p.title} tilt={[-1.2, 1, 0.6, -0.8][i]} delay={400 + i * 130}>
+              <p className="font-mono text-[11px] uppercase tracking-widest text-dot">{p.context}</p>
+              <h3 className="font-extrabold leading-tight tracking-tight">
+                {p.href ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+                    {p.title} ↗
+                  </a>
+                ) : (
+                  p.title
+                )}
+              </h3>
+              <p className="mt-1 text-[13px] leading-snug">{p.description}</p>
+            </Paper>
+          ))}
+        </ScrollArea>
+      </div>
+    ),
+  },
+  {
+    id: "builds",
+    mark: "4",
+    label: "things I built",
+    wall: "#b9a3e8",
+    floor: "#e8642c",
+    horizon: 62,
+    ink: "dark",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <Title n="4">things I built</Title>
+        <ScrollArea className="scroll-thin items-start mt-6 grid max-h-[60vh] gap-3 overflow-y-auto pb-24 pr-1 sm:mt-auto sm:grid-cols-2 lg:grid-cols-3">
+          {PROJECTS.engineering.map((p, i) => (
+            <Paper key={p.title} tilt={[-1.4, 0.9, -0.6, 1.3, -0.9][i]} delay={350 + i * 120}>
+              <p className="font-serif text-xl italic text-dot">{i + 1}</p>
+              <h3 className="font-extrabold leading-tight tracking-tight">{p.title}</h3>
+              <p className="font-mono text-[11px]">{p.context}</p>
+              <p className="mt-2 text-[13px] leading-snug">{p.description}</p>
+              <Tags items={p.tags} />
+            </Paper>
+          ))}
+        </ScrollArea>
+      </div>
+    ),
+  },
+  {
+    id: "school",
+    mark: "5",
+    label: "school",
+    wall: "#8fbf9f",
+    floor: "#efe6d6",
+    horizon: 66,
+    ink: "dark",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <Title n="5">school</Title>
+        <ScrollArea className="scroll-thin items-start mt-6 grid max-h-[58vh] gap-4 overflow-y-auto pb-24 pr-1 sm:mt-auto sm:max-w-3xl sm:grid-cols-2">
+          {edu.map((e, i) => (
+            <Paper key={e.title} tilt={i ? 1 : -1.2} delay={400 + i * 160}>
+              <p className="font-serif text-2xl italic text-dot">{e.date}</p>
+              <h3 className="mt-1 font-extrabold leading-tight tracking-tight">{e.title}</h3>
+              <p className="font-mono text-xs">@{e.org}</p>
+              <p className="mt-2 text-sm leading-snug">{e.description}</p>
+            </Paper>
+          ))}
+        </ScrollArea>
+      </div>
+    ),
+  },
+  {
+    id: "contact",
+    mark: "#",
+    label: "say hi",
+    wall: "#1a4ba7",
+    floor: "#d0ad82",
+    horizon: 70,
+    ink: "light",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <h2 className="pop mt-[10vh] text-[clamp(3.6rem,14vw,12rem)] font-black leading-[0.8] tracking-[-0.06em] text-paper" style={d(150)}>
+          say hi<span className="text-dot">.</span>
+        </h2>
+        <div className="mt-auto mb-24 space-y-2 font-mono text-sm tracking-[0.08em] sm:text-base">
+          {[
+            ["email", `mailto:${SITE.socials.mail}`, SITE.socials.mail],
+            ["github", SITE.socials.github, "github.com/giannistbs"],
+            ["linkedin", SITE.socials.linkedin, "linkedin.com/in/giannis-tampakis"],
+            ["audits", SITE.socials.audits, "github.com/giannistbs/audit-portfolio"],
+          ].map(([k, href, text], i) => (
+            <p key={k} className="pop flex gap-3" style={d(500 + i * 120)}>
+              <span className="text-dot">&gt;</span>
+              <span className="w-20 text-ink/70">{k}</span>
+              <a href={href} target={k === "email" ? undefined : "_blank"} rel="noopener noreferrer" className="font-bold underline-offset-4 hover:underline">
+                {text}
+              </a>
+            </p>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+];

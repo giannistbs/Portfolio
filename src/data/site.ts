@@ -50,13 +50,13 @@ export const STATS: Stat[] = [
     suffix: "+",
     label: "EU research projects running a workflow engine I designed",
     cta: "projects",
-    href: "/projects/",
+    href: "/tech/projects/",
   },
   {
     value: 3,
     label: "EU Horizon projects where I led DevOps and architecture",
     cta: "experience",
-    href: "/experience/",
+    href: "/tech/experience/",
   },
 ];
 

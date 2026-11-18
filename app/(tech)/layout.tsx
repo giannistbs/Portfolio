@@ -3,13 +3,13 @@ import { Inconsolata } from "next/font/google";
 import { Shell } from "@/components/layout/shell";
 import { SITE } from "@/data/site";
 import { Providers } from "./providers";
-import "./globals.css";
+import "./tech.css";
 
 const font = Inconsolata({ subsets: ["latin"], weight: ["400", "700"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: SITE.fullName, template: `%s · ${SITE.fullName}` },
+  title: { default: `${SITE.fullName} · tech`, template: `%s · ${SITE.fullName}` },
   description: SITE.description,
   openGraph: { title: SITE.fullName, description: SITE.description, url: SITE.url, type: "website", images: "/images/ioannis.jpg" },
 };

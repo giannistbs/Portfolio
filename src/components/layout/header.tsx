@@ -21,7 +21,7 @@ export function Header() {
     >
       <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
         <Link
-          href="/"
+          href="/tech/"
           className={cn(
             "text-lg font-bold transition-colors duration-300 hover:text-primary",
             path === "/" ? "text-primary" : "text-foreground",

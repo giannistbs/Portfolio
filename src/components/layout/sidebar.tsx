@@ -23,7 +23,7 @@ export function Sidebar() {
       >
         <motion.div className="p-2" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, duration: 0.3 }}>
           <Link
-            href="/"
+            href="/tech/"
             aria-label="Home"
             className={cn(
               "block size-9 overflow-hidden rounded-lg border border-primary/60 transition-transform duration-300",
@@ -36,8 +36,8 @@ export function Sidebar() {
         </motion.div>
 
         <motion.nav className="grid gap-1 p-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}>
-          <Item icon={Briefcase} href="/experience/" label="experience" active={path === "/experience"} />
-          <Item icon={FolderGit2} href="/projects/" label="projects" active={path === "/projects"} />
+          <Item icon={Briefcase} href="/tech/experience/" label="experience" active={path === "/experience"} />
+          <Item icon={FolderGit2} href="/tech/projects/" label="projects" active={path === "/projects"} />
         </motion.nav>
 
         <div className="mx-auto flex flex-grow flex-col items-center justify-center">

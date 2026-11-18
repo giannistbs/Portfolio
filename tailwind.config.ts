@@ -6,7 +6,20 @@ const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        // used by the main (surreal) site; the /tech site sets Inconsolata on <body> instead
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+      },
       colors: {
+        // main site
+        paper: "#f3ece0",
+        ink: "#1b1b1b",
+        dot: "#ff4a1c",
+        pill: "#ffb3cf",
+        mustard: "#c9a033",
+        // /tech site (theme tokens)
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
