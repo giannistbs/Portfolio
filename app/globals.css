@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.3rem;
+}
+
+/* shared tokens */
+.light-red,
+.light-orange,
+.light-yellow,
+.light-green,
+.light-cyan,
+.light-blue,
+.light-indigo,
+.light-violet,
+.light-pink,
+.light-black,
+.dark-red,
+.dark-orange,
+.dark-yellow,
+.dark-green,
+.dark-cyan,
+.dark-blue,
+.dark-indigo,
+.dark-violet,
+.dark-pink,
+.dark-white {
+  --card: 0 0% 100%;
+  --popover: 0 0% 100%;
+  --secondary: 240 4.8% 95.9%;
+  --muted: 240 4.8% 95.9%;
+  --accent: 240 4.8% 95.9%;
+  --border: 240 5.9% 90%;
+}
+
+/* light mode */
+.light-red,
+.light-orange,
+.light-yellow,
+.light-green,
+.light-cyan,
+.light-blue,
+.light-indigo,
+.light-violet,
+.light-pink,
+.light-black {
+  color-scheme: light;
+  --background: 0 0% 92%;
+  --foreground: 240 10% 3.9%;
+  --card-foreground: 240 10% 3.9%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary-foreground: 0 0% 100%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted-foreground: 240 3.8% 40%;
+  --accent-foreground: 240 5.9% 10%;
+}
+
+/* dark mode */
+.dark-red,
+.dark-orange,
+.dark-yellow,
+.dark-green,
+.dark-cyan,
+.dark-blue,
+.dark-indigo,
+.dark-violet,
+.dark-pink,
+.dark-white {
+  color-scheme: dark;
+  --background: 20 14.3% 4.1%;
+  --foreground: 0 0% 95%;
+  --card: 24 9.8% 10%;
+  --card-foreground: 0 0% 95%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 95%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 12 6.5% 15.1%;
+  --accent-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+}
+
+/* accent colours */
+.light-red, .dark-red { --primary: 346.8 77.2% 49.8%; --ring: 346.8 77.2% 49.8%; }
+.light-orange, .dark-orange { --primary: 24 95% 53%; --ring: 24 95% 53%; }
+.light-yellow, .dark-yellow { --primary: 45 93% 47%; --ring: 45 93% 47%; }
+.light-green, .dark-green { --primary: 142 76% 46%; --ring: 142 76% 46%; }
+.light-cyan, .dark-cyan { --primary: 180 100% 37%; --ring: 180 100% 37%; }
+.light-blue, .dark-blue { --primary: 217.2 91.2% 59.8%; --ring: 217.2 91.2% 59.8%; }
+.light-indigo, .dark-indigo { --primary: 238 76% 58%; --ring: 238 76% 58%; }
+.light-violet, .dark-violet { --primary: 270 100% 60%; --ring: 270 100% 60%; }
+.light-pink, .dark-pink { --primary: 330 76% 50%; --ring: 330 76% 50%; }
+.light-black { --background: 0 0% 100%; --foreground: 0 0% 0%; --primary: 0 0% 0%; --primary-foreground: 0 0% 100%; --ring: 0 0% 0%; }
+.dark-white { --background: 240 10% 3.9%; --primary: 0 0% 100%; --primary-foreground: 240 10% 3.9%; --ring: 0 0% 100%; }
+
+@layer base {
+  * { @apply border-border; }
+  html { @apply bg-background; }
+  body { @apply text-foreground; }
+  ::selection { background: hsl(var(--primary) / 0.35); }
+}
+
+.scrollbar-thin::-webkit-scrollbar { width: 8px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.2); border-radius: 4px; }
+
+/* hide the system cursor only while the animated one is active (mouse devices) */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
