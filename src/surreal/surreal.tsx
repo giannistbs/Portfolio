@@ -245,7 +245,7 @@ function ChapterView({ ch }: { ch: Chapter }) {
         <img
           src={ch.image}
           alt=""
-          className="slide-in absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-right"
+          className="slide-in absolute inset-x-0 bottom-0 top-[84px] h-[calc(100%-84px)] w-full object-cover object-[72%_center] sm:top-0 sm:h-full sm:object-right [mask-image:linear-gradient(to_bottom,transparent,black_56px)] sm:[mask-image:none]"
           style={{ "--d": "60ms" } as React.CSSProperties}
         />
       ) : (

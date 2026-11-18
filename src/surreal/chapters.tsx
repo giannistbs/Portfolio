@@ -75,7 +75,7 @@ export const CHAPTERS: Chapter[] = [
           <span className="inline-block size-[clamp(0.8rem,2vw,1.6rem)] rounded-full bg-dot" />
           <span className="font-serif text-[clamp(2.4rem,7.5vw,7rem)] italic tracking-tight">tampakis</span>
         </h1>
-        <div className="mb-[4vh] space-y-2 font-mono text-[13px] tracking-[0.12em] text-ink sm:text-[15px]">
+        <div className="mb-[9vh] w-fit space-y-2 rounded-lg bg-paper/90 px-3 py-2.5 font-mono text-[12px] tracking-[0.08em] text-ink shadow-md sm:mb-[4vh] sm:bg-transparent sm:p-0 sm:text-[15px] sm:tracking-[0.12em] sm:shadow-none">
           {[
             "devops engineer at certora.",
             "ex-netcompany: cloud for eu research.",
