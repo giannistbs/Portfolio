@@ -117,13 +117,15 @@ export const CHAPTERS: Chapter[] = [
     id: "work",
     mark: "1",
     label: "experience",
-    wall: "#d8a532",
-    floor: "#f2a7c3",
-    horizon: 64,
-    ink: "dark",
+    wall: "#406f6f",
+    floor: "#b4613a",
+    horizon: 79,
+    image: "/art/work.jpg",
+    imageMobile: "/art/work-tall.jpg",
+    ink: "light",
     render: () => (
       <div className="flex h-full flex-col">
-        <Title n="1">experience</Title>
+        <Title n="1" light>experience</Title>
         <ScrollArea className="scroll-thin items-start mt-6 grid max-h-[58vh] gap-4 overflow-y-auto pb-24 pr-1 sm:mt-auto sm:max-w-3xl sm:grid-cols-2">
           {work.slice(0, 2).map((w, i) => (
             <Paper key={w.org} tilt={i ? 1.2 : -1.4} delay={400 + i * 160}>
@@ -215,9 +217,11 @@ export const CHAPTERS: Chapter[] = [
     id: "builds",
     mark: "4",
     label: "things I built",
-    wall: "#b9a3e8",
-    floor: "#e8642c",
-    horizon: 62,
+    wall: "#af98b7",
+    floor: "#eb853b",
+    horizon: 78,
+    image: "/art/builds.jpg",
+    imageMobile: "/art/builds-tall.jpg",
     ink: "dark",
     render: () => (
       <div className="flex h-full flex-col">
@@ -240,9 +244,11 @@ export const CHAPTERS: Chapter[] = [
     id: "school",
     mark: "5",
     label: "school",
-    wall: "#8fbf9f",
-    floor: "#efe6d6",
-    horizon: 66,
+    wall: "#909c79",
+    floor: "#dfd1bb",
+    horizon: 86,
+    image: "/art/school.jpg",
+    imageMobile: "/art/school-tall.jpg",
     ink: "dark",
     render: () => (
       <div className="flex h-full flex-col">
